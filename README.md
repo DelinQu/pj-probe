@@ -1,6 +1,6 @@
 # Pj-Probe
 A terminal visualization tool for GPU occupancy on S cluster in python based on [termgraph](https://github.com/mkaz/termgraph).
-![image](https://user-images.githubusercontent.com/60593268/201825211-c1526c00-283d-4600-a440-9225ff11b01c.png)
+
 
 ## Install
 Requires Python 3.7+, install from [githb](https://github.com/DelinQu/pjprob)
@@ -12,21 +12,34 @@ pip install git+https://github.com/DelinQu/pjprob
 
 ### Examples
 
+Default useage: pjprobr will list all the GPU of nodes in optimal partition.
 ```
-termgraph data/ex1.dat
-
-# Reading data from data/ex1.dat
-
-2007: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 183.32
-2008: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 231.23
-2009: ▇ 16.43
-2010: ▇▇▇▇ 50.21
-2011: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 508.97
-2012: ▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇▇ 212.05
-2014: ▏ 1.00
+pjprobe
 ```
+![image](https://user-images.githubusercontent.com/60593268/201833629-168b2569-f4c9-4799-a3aa-b999690ae64f.png)
 
-An example using emoji as custom tick:
+Specify user, partition, and node type：
+
+```bash
+pjprobe --user qudelin --partition optimal --type spot
+```
+![image](https://user-images.githubusercontent.com/60593268/201835089-6b8f0c2c-5d48-47a2-9e53-e186ca7c74ff.png)
+
+
+An example using Customized colors:
+
+```
+pjprobe  --color {yellow,magenta,blue} 
+```
+![image](https://user-images.githubusercontent.com/60593268/201835709-d2cca610-5edf-49c2-b19e-3a0352d67995.png)
+
+
+An example using stack 
+```
+ pjprobe --stacke --color {green,magenta,cyan} 
+```
+![image](https://user-images.githubusercontent.com/60593268/201836303-5c38a2a0-3d92-460d-b833-52ea022daab7.png)
+
 
 ```
 termgraph data/ex1.dat --custom-tick "🏃" --width 20 --title "Running Data"
@@ -43,58 +56,21 @@ termgraph data/ex1.dat --custom-tick "🏃" --width 20 --title "Running Data"
 
 ```
 
-
-An example using stdin and emoji:
-
-```
-echo "Label,3,9,1" | termgraph --custom-tick "😀" --no-label
-
-
-😀😀😀 3.00
-😀😀😀😀😀😀😀😀😀 9.00
-😀 1.00
-
-```
-
-Most results can be copied and pasted wherever you like, since they use standard block characters. However the color charts will not show, since they use terminal escape codes for color. A couple images to show color examples:
-
-```
-termgraph data/ex4.dat --color {blue,red}
-```
-
-<img src="https://user-images.githubusercontent.com/45363/43405623-1a2cc4d4-93cf-11e8-8c96-b7134d8986a2.png" width="655" alt="Multi variable bar chart with colors" />
-
-```
-termgraph data/ex7.dat --color {yellow,magenta} --stacked --title "Stacked Data"
-```
-
-<img src="https://user-images.githubusercontent.com/45363/43405624-1a4a821c-93cf-11e8-84f3-f45c65b7ca98.png" width="686" alt="Multi variable stacked bar chart with colors" />
-
-
-Calendar Heatmap, expects first column to be date in yyyy-mm-dd
-
-```
-termgraph --calendar --start-dt 2017-07-01 data/cal.dat
-```
-
-<img src="https://user-images.githubusercontent.com/45363/43405619-1a15998a-93cf-11e8-8a3f-abfd2f6104a5.png" width="596" alt="Calendar Heatmap" />
-
-
-
-
-
 ### Usage
 ```
-usage: termgraph.py [-h] [(optional arguments)] [filename]
+usage: pjprobe [-h] [--title TITLE] [--user USER] [--partition PARTITION] [--type TYPE] [--show_others] [--width WIDTH] [--format FORMAT] [--suffix SUFFIX] [--no-labels] [--no-values] [--space-between] [--color [COLOR ...]] [--vertical] [--stacked] [--histogram] [--bins BINS]
+               [--different-scale] [--start-dt START_DT] [--custom-tick CUSTOM_TICK] [--delim DELIM] [--verbose] [--label-before] [--version]
 
 draw basic graphs on terminal
-
-positional arguments:
-  filename              data file name (comma or space separated). Defaults to stdin.
 
 optional arguments:
   -h, --help            show this help message and exit
   --title TITLE         Title of graph
+  --user USER           username
+  --partition PARTITION
+                        your partition
+  --type TYPE           reserved or spot
+  --show_others         Display the other gpu number
   --width WIDTH         width of graph in characters default:50
   --format FORMAT       format specifier to use.
   --suffix SUFFIX       string to add as a suffix to all data points.
@@ -107,7 +83,6 @@ optional arguments:
   --histogram           Histogram
   --bins BINS           Bins of Histogram
   --different-scale     Categories have different scales.
-  --calendar            Calendar Heatmap chart
   --start-dt START_DT   Start date for Calendar chart
   --custom-tick CUSTOM_TICK
                         Custom tick mark, emoji approved
