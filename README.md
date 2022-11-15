@@ -1,4 +1,5 @@
-# Pj-Probe
+# Pj-Probe :basecampy:
+
 A terminal visualization tool for GPU occupancy on S cluster in python based on [termgraph](https://github.com/mkaz/termgraph).
 
 
