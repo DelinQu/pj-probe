@@ -3,7 +3,7 @@ A terminal visualization tool for GPU occupancy on S cluster in python based on 
 
 
 ## Install
-Requires Python 3.7+, install from [githb](https://github.com/DelinQu/pjprob)
+Requires Python 3.7+, install from [github](https://github.com/DelinQu/pjprob)
 
 ```
 pip install git+https://github.com/DelinQu/pjprob
