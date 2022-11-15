@@ -159,14 +159,14 @@ def get_data(args: Dict) -> Tuple[List, List, List, List]:
     data = [ [20.4, 40.5], [30.7, 100.0], ...]"""
 
     all_nodes = get_nodes(user="$", partition=args["partition"], type=args["type"])
-    user_nodes = get_nodes(user=args["user"], partition=args["partition"], type=args["type"])
+    user_nodes = get_nodes(user=args["user"][:8], partition=args["partition"], type=args["type"])
 
     if all_nodes == {}:
         print("Here is no process on {} machine!".format(args["type"]))
         return [], [], [], []
 
     labels = list(all_nodes)
-    categories = ["ALL", "OTHERS", args["user"]] if args["show_others"] else ["ALL", args["user"]]
+    categories = ["ALL", "OTHERS", args["user"][:8]] if args["show_others"] else ["ALL", args["user"][:8]]
     data = list()
     for i, (k, v) in enumerate(all_nodes.items()):
         data.append([v])
