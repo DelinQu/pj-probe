@@ -1,19 +1,13 @@
 # Pj-Probe
-A Visualization Tool for GPU Occupancy on S Cluster based on .
+A terminal visualization tool for GPU occupancy on S cluster in python based on [termgraph](https://github.com/mkaz/termgraph).
+![image](https://user-images.githubusercontent.com/60593268/201825211-c1526c00-283d-4600-a440-9225ff11b01c.png)
 
-# Termgraph
+## Install
+Requires Python 3.7+, install from [githb](https://github.com/DelinQu/pjprob)
 
-A command-line tool that draws basic graphs in the terminal, written in Python.
-
-Graph types supported:
-
-- Bar Graphs
-- Color charts
-- Multi-variable
-- Stacked charts
-- Histograms
-- Horizontal or Vertical
-- Emoji!
+```
+pip install git+https://github.com/DelinQu/pjprob
+```
 
 
 ### Examples
@@ -87,25 +81,9 @@ termgraph --calendar --start-dt 2017-07-01 data/cal.dat
 
 
 
-### Install
 
-Requires Python 3.7+, install from [PyPI project](https://pypi.org/project/termgraph/)
-
-```
-python3 -m pip install termgraph
-```
-
-Note: Be sure your PATH includes the pypi install directory, for me it is `~/.local/bin/`
 
 ### Usage
-
-* Create data file with two columns either comma or space separated.
-  The first column is your labels, the second column is a numeric data
-
-* termgraph [datafile]
-
-* Help: termgraph -h
-
 ```
 usage: termgraph.py [-h] [(optional arguments)] [filename]
 
@@ -138,21 +116,6 @@ optional arguments:
   --label-before        Display the values before the bars
   --version             Display version and exit
 ```
-
-
-### Background
-
-I wanted a quick way to visualize data stored in a simple text file. I initially created some scripts in R that generated graphs but this was a two step process of creating the graph and then opening the generated graph.
-
-After seeing [command-line sparklines](https://github.com/holman/spark) I figured I could do the same thing using block characters for bar charts.
-
-### Contribute
-
-All contributions are welcome, for feature requests or bug reports, use [Github Issues](https://github.com/mkaz/termgraph/issues). Pull requests are welcome to help fix or add features.
-
-**Code contributions**: This repository uses the [black code formatter](https://github.com/psf/black) to automatically format the code. A Github Action is setup to lint your code, to avoid failures it is recommended to [setup your editor to auto format on save](https://github.com/psf/black/blob/master/docs/editor_integration.md).
-
-Thanks to all the [contributors](https://github.com/mkaz/termgraph/graphs/contributors)!
 
 
 ### License
