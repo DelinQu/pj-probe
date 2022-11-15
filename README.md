@@ -41,9 +41,9 @@ An example using stack
 ```
 ![image](https://user-images.githubusercontent.com/60593268/201836303-5c38a2a0-3d92-460d-b833-52ea022daab7.png)
 
-
+emoji: coming soon ...
 ```
-termgraph data/ex1.dat --custom-tick "🏃" --width 20 --title "Running Data"
+pjprobe --custom-tick "🏃" --width 20 --title "Running Data"
 
 # Running Data
 
