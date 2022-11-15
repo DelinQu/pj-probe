@@ -14,7 +14,7 @@ pip install git+https://github.com/DelinQu/pj-probe
 
 ### Examples
 
-Default useage: pjprobr will list all the GPU of nodes in optimal partition.
+Default useage: pjprobe will list all the GPU of nodes in **optimal** partition.
 ```
 pjprobe
 ```
