@@ -11,6 +11,7 @@ import os
 from .termgraph import chart
 from .termgraph import check_data
 from .termgraph import print_categories  # type: ignore
+import os
 
 VERSION = "0.0.1"
 
@@ -43,7 +44,7 @@ def init_args() -> Dict:
     """Parse and return the arguments."""
     parser = argparse.ArgumentParser(description="draw basic graphs on terminal")
     parser.add_argument("--title", default="GPU Visual", help="Title of graph")
-    parser.add_argument("--user", default="qudelin", help="username")
+    parser.add_argument("--user", default=os.environ["USER"], help="username")
     parser.add_argument("--partition", default="optimal", help="your partition")
     parser.add_argument("--type", default="reserved", help="reserved or spot")
     parser.add_argument(
@@ -91,10 +92,11 @@ def init_args() -> Dict:
         help="Display the values before the bars",
     )
     parser.add_argument("--version", action="store_true", help="Display version and exit")
-    if len(sys.argv) == 1:
-        if sys.stdin.isatty():
-            parser.print_usage()
-            sys.exit(2)
+
+    # if len(sys.argv) == 1:
+    #     if sys.stdin.isatty():
+    #         parser.print_usage()
+    #         sys.exit(2)
 
     args = vars(parser.parse_args())
 
