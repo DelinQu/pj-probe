@@ -166,7 +166,7 @@ def get_data(args: Dict) -> Tuple[List, List, List, List]:
         return [], [], [], []
 
     labels = list(all_nodes)
-    categories = ["ALL", "OTHERS", args["user"][:8]] if args["show_others"] else ["ALL", args["user"][:8]]
+    categories = ["ALL", "OTHERS", args["user"]] if args["show_others"] else ["ALL", args["user"]]
     data = list()
     for i, (k, v) in enumerate(all_nodes.items()):
         data.append([v])
