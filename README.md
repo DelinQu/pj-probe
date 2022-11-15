@@ -2,6 +2,8 @@
 
 A terminal visualization tool for GPU occupancy on S cluster in python based on [termgraph](https://github.com/mkaz/termgraph).
 
+- [x] 2022-11-15 : create repo and release version 0.0.1.
+
 
 ## Install
 Requires Python 3.7+, install from [github](https://github.com/DelinQu/pj-probe)
