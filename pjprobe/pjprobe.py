@@ -8,9 +8,9 @@ import argparse
 import sys
 from colorama import init
 import os
-from termgraph import chart
-from termgraph import check_data
-from termgraph import print_categories  # type: ignore
+from .termgraph import chart
+from .termgraph import check_data
+from .termgraph import print_categories  # type: ignore
 
 VERSION = "0.0.1"
 

@@ -18,6 +18,8 @@ setup(
     install_requires=requirements,
     python_requires='>=3.7',
     packages=find_packages(),
+    author="DelinQu",
+    author_email="delinqu.cs@gmail.com",
     entry_points={
         'console_scripts': [
             'pjprobe = pjprobe.pjprobe:main',
