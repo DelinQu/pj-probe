@@ -67,7 +67,7 @@ def init_args() -> Dict:
         help="Print a new line after every field",
     )
     parser.add_argument(
-        "--color", nargs="*", default=["blue", "red", "yellow"], help="Graph bar color( s )"
+        "--color", nargs="*", default=["blue", "cyan", "green"], help="Graph bar color( s )"
     )
     parser.add_argument("--vertical", action="store_true", help="Vertical graph")
     parser.add_argument("--stacked", action="store_true", help="Stacked bar graph")
