@@ -13,7 +13,7 @@ from .termgraph import check_data
 from .termgraph import print_categories  # type: ignore
 import os
 
-VERSION = "0.0.1"
+VERSION = "0.0.2"
 
 init()
 
@@ -150,7 +150,7 @@ def get_data(args: Dict) -> Tuple[List, List, List, List]:
         data.append([])
         data[i].append(v if k not in user_nodes else v - user_nodes[k])
         data[i].append(0 if k not in user_nodes else user_nodes[k])
-        data[i].append(CAPACITY - v)
+        data[i].append(max(CAPACITY, v) - v)
 
     # Check that all data are valid. (i.e. There are no missing values.)
     colors = check_data(labels, data, args)
