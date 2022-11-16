@@ -34,7 +34,7 @@ def init_args() -> Dict:
     parser.add_argument("--partition", default="optimal", help="your partition")
     parser.add_argument("--type", default="reserved", help="reserved or spot")
     parser.add_argument(
-        "--width", type=int, default=80, help="width of graph in characters default:50"
+        "--width", type=int, default=64, help="width of graph in characters default:50"
     )
     parser.add_argument("--format", default="{:<5.2f}", help="format specifier to use.")
     parser.add_argument("--format_stacked", default="{:<4.2f} / {:<4.2f} / {:<4.2f} ", help="format specifier to use.")
