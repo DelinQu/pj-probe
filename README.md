@@ -2,7 +2,10 @@
 
 A terminal visualization tool for GPU occupancy on S cluster in python based on [termgraph](https://github.com/mkaz/termgraph).
 
+![image](https://user-images.githubusercontent.com/60593268/202074001-f3b7fde4-7b76-4905-9746-f5a687f6e79d.png)
+
 - [x] 2022-11-15 : create repo and release version 0.0.1.
+- [x] 2022-11-16 : changed the legend, fixed alignment bugs and release version 0.0.2.
 
 
 ## Install
@@ -20,29 +23,32 @@ Default useage: pjprobe will list all the GPU of nodes in **optimal** partition.
 ```
 pjprobe
 ```
-![image](https://user-images.githubusercontent.com/60593268/201833629-168b2569-f4c9-4799-a3aa-b999690ae64f.png)
+![image](https://user-images.githubusercontent.com/60593268/202074340-e307e37d-3e00-4276-b021-b9688e512c51.png)
+
+
+:point_down: :point_down: :point_down: pjprobe  in stacked mode.
+```
+pjprobe  --stacked
+```
+![image](https://user-images.githubusercontent.com/60593268/202074001-f3b7fde4-7b76-4905-9746-f5a687f6e79d.png)
+
 
 Specify user, partition, and node type：
 
 ```bash
-pjprobe --user qudelin --partition optimal --type spot
+pjprobe --user xukaixin  --partition ai4science --type reserved --stacked
 ```
-![image](https://user-images.githubusercontent.com/60593268/201835089-6b8f0c2c-5d48-47a2-9e53-e186ca7c74ff.png)
+![image](https://user-images.githubusercontent.com/60593268/202075062-9b680636-f9e9-4abc-8b45-bffcfb7b9e71.png)
+
 
 
 An example using Customized colors:
 
 ```
-pjprobe  --color {yellow,magenta,blue} 
+pjprobe  --color {yellow,magenta,blue} --stacked
 ```
-![image](https://user-images.githubusercontent.com/60593268/201835709-d2cca610-5edf-49c2-b19e-3a0352d67995.png)
+![image](https://user-images.githubusercontent.com/60593268/202075163-25a35846-771d-48f3-886b-97b50bd2061d.png)
 
-
-An example using stack 
-```
- pjprobe --stacke --color {green,magenta,cyan} 
-```
-![image](https://user-images.githubusercontent.com/60593268/201836303-5c38a2a0-3d92-460d-b833-52ea022daab7.png)
 
 emoji: coming soon ...
 ```
