@@ -8,31 +8,17 @@ import argparse
 import sys
 from colorama import init
 import os
-from .termgraph import chart
-from .termgraph import check_data
-from .termgraph import print_categories  # type: ignore
+from termgraph import chart
+from termgraph import check_data
+from termgraph import print_categories  # type: ignore
 import os
 
 VERSION = "0.0.1"
 
 init()
 
-# ANSI escape SGR Parameters color codes
-AVAILABLE_COLORS = {
-    "red": 91,
-    "blue": 94,
-    "green": 92,
-    "magenta": 95,
-    "yellow": 93,
-    "black": 90,
-    "cyan": 96,
-}
-
-DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
-UNITS = ["", "K", "M", "B", "T"]
-DELIM = ","
-TICK = "▇"
-SM_TICK = "▏"
+# 8 GPU IN A MACHINE
+CAPACITY = 8
 
 try:
     range = xrange  # type: ignore
@@ -48,17 +34,12 @@ def init_args() -> Dict:
     parser.add_argument("--partition", default="optimal", help="your partition")
     parser.add_argument("--type", default="reserved", help="reserved or spot")
     parser.add_argument(
-        "--show_others",
-        action="store_true",
-        default=True,
-        help="Display the other gpu number",
-    )
-    parser.add_argument(
-        "--width", type=int, default=50, help="width of graph in characters default:50"
+        "--width", type=int, default=90, help="width of graph in characters default:50"
     )
     parser.add_argument("--format", default="{:<5.2f}", help="format specifier to use.")
+    parser.add_argument("--format_stacked", default="{:<4.2f} / {:<4.2f} / {:<4.2f} ", help="format specifier to use.")
     parser.add_argument(
-        "--suffix", default="", help="string to add as a suffix to all data points."
+        "--suffix", default="GPU", help="string to add as a suffix to all data points."
     )
     parser.add_argument("--no-labels", action="store_true", help="Do not print the label column")
     parser.add_argument("--no-values", action="store_true", help="Do not print the values at end")
@@ -67,11 +48,14 @@ def init_args() -> Dict:
         action="store_true",
         help="Print a new line after every field",
     )
+    
     parser.add_argument(
-        "--color", nargs="*", default=["blue", "cyan", "green"], help="Graph bar color( s )"
+        "--color", nargs="*", default=["blue", "green", "black"], help="Graph bar color( s )"
     )
+
     parser.add_argument("--vertical", action="store_true", help="Vertical graph")
     parser.add_argument("--stacked", action="store_true", help="Stacked bar graph")
+    parser.add_argument("--bar", action="store_true", help="NO Stacked bar graph")
     parser.add_argument("--histogram", action="store_true", help="Histogram")
     parser.add_argument("--bins", default=5, type=int, help="Bins of Histogram")
     parser.add_argument(
@@ -92,12 +76,6 @@ def init_args() -> Dict:
         help="Display the values before the bars",
     )
     parser.add_argument("--version", action="store_true", help="Display version and exit")
-
-    # if len(sys.argv) == 1:
-    #     if sys.stdin.isatty():
-    #         parser.print_usage()
-    #         sys.exit(2)
-
     args = vars(parser.parse_args())
 
     if args["custom_tick"] != "":
@@ -166,13 +144,13 @@ def get_data(args: Dict) -> Tuple[List, List, List, List]:
         return [], [], [], []
 
     labels = list(all_nodes)
-    categories = ["ALL", "OTHERS", args["user"]] if args["show_others"] else ["ALL", args["user"]]
+    categories = ["OTHERS", args["user"], "IDLE"]
     data = list()
     for i, (k, v) in enumerate(all_nodes.items()):
-        data.append([v])
-        if args["show_others"]:
-            data[i].append(v if k not in user_nodes else v - user_nodes[k])
+        data.append([])
+        data[i].append(v if k not in user_nodes else v - user_nodes[k])
         data[i].append(0 if k not in user_nodes else user_nodes[k])
+        data[i].append(CAPACITY - v)
 
     # Check that all data are valid. (i.e. There are no missing values.)
     colors = check_data(labels, data, args)

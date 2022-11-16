@@ -29,6 +29,7 @@ AVAILABLE_COLORS = {
     "yellow": 93,
     "black": 90,
     "cyan": 96,
+    "gray": 100
 }
 
 DAYS = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"]
@@ -176,7 +177,6 @@ def normalize(data: List, width: int) -> List:
     normal_data = []
     for datum in data_offset:
         normal_data.append([v * norm_factor for v in datum])
-
     return normal_data
 
 
@@ -414,7 +414,8 @@ def stacked_graph(
         for j in range(len(values)):
             print_row(values[j], int(num_blocks[j]), val_min, colors[j])
 
-        tail = " {}{}".format(args["format"].format(sum(values)), args["suffix"])
+        if args["stacked"]:
+            tail = " {}{}".format(args["format_stacked"].format(*values), args["suffix"])
         print(tail)
 
 
