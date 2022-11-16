@@ -4,8 +4,8 @@ A terminal visualization tool for GPU occupancy on S cluster in python based on 
 
 ![image](https://user-images.githubusercontent.com/60593268/202074001-f3b7fde4-7b76-4905-9746-f5a687f6e79d.png)
 
-- [x] 2022-11-15 : create repo and release version 0.0.1.
-- [x] 2022-11-16 : changed the legend, fixed alignment bugs and release version 0.0.2.
+- [x] :seedling: 2022-11-15 : create repo and release version 0.0.1.
+- [x] :deciduous_tree: 2022-11-16 : changed the legend, fixed alignment bugs and release version 0.0.2.
 
 
 ## Install
